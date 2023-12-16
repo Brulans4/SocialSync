@@ -55,6 +55,7 @@ async function subscription(user) {
         Authorization: user.token,
       },
     };
+
     const response = await fetch(`${process.env.API_BASE_URL}/users/`, options);
     const listSubscription = await response.json();
 
@@ -64,29 +65,28 @@ async function subscription(user) {
 
     let index = 1;
     listSubscription.forEach((sub) => {
-
       const divSubscription = document.createElement('div');
-      divSubscription.className = 'mb-4'
+      divSubscription.className = 'mb-4';
 
       const subscriptionInfluencer = document.createElement('p');
-      subscriptionInfluencer.className = 'font-bold'
-      subscriptionInfluencer.innerText = `Influencer : ${sub.influencer}`
+      subscriptionInfluencer.className = 'font-bold';
+      subscriptionInfluencer.innerText = `Influencer : ${sub.influencer}`;
 
       const subscriptionPlatform = document.createElement('p');
       subscriptionPlatform.className = 'text-gray-500';
       subscriptionPlatform.innerText = `Platforms : ${sub.platform}`;
-      
+
       divSubscription.appendChild(subscriptionInfluencer);
       divSubscription.appendChild(subscriptionPlatform);
       divSubscriptions.appendChild(divSubscription);
 
-      if(listSubscription.length !== index){
+      if (listSubscription.length !== index) {
         const subscriptionSeparation = document.createElement('div');
         subscriptionSeparation.className = 'border-t border-gray-200 py-3';
         divSubscriptions.appendChild(subscriptionSeparation);
       }
 
-      index+=1;
+      index += 1;
     });
 
     div.appendChild(divSubscriptions);
