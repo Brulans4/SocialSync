@@ -25,6 +25,8 @@ async function login() {
         },
       };
 
+      console.log(`${process.env.API_BASE_URL}/users/`);
+
       const response = await fetch(`${process.env.API_BASE_URL}/auths/login`, options);
 
       if (!response.ok) {
