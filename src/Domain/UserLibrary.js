@@ -12,14 +12,12 @@ async function login() {
       const email = document.getElementById('emaillog').value;
       const password = document.getElementById('pwdlog').value;
 
-      const newData = {
-        email,
-        password,
-      };
-
       const options = {
         method: 'POST',
-        body: JSON.stringify(newData),
+        body: JSON.stringify({
+          email,
+          password
+        }),
         headers: {
           'Content-Type': 'application/json',
         },
@@ -63,17 +61,15 @@ async function register() {
     } else if (!gdprCheckbox.checked) {
       document.getElementById('errordiv').innerText = 'You forgot to accept the RGPD !';
     } else {
-      // Creation of a new json object
-      const newData = {
-        email,
-        username,
-        // password,
-      };
 
       try {
         const options = {
           method: 'POST',
-          body: JSON.stringify(newData),
+          body: JSON.stringify({
+            email,
+            username,
+            password,
+          }),
           headers: {
             'Content-Type': 'application/json',
           },
