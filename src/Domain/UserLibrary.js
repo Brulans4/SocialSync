@@ -25,7 +25,7 @@ async function login() {
         },
       };
 
-      const response = await fetch(`/api/auths/login`, options);
+      const response = await fetch(`${process.env.API_BASE_URL}/auths/login`, options);
 
       if (!response.ok) {
         const msg = await response.json();
@@ -64,22 +64,20 @@ async function register() {
       document.getElementById('errordiv').innerText = 'I have frogoten to accept the RGPD';
     } else {
       // Creation of a new json object
-      const newData = {
-        email,
-        username,
-        // password,
-      };
-
       try {
         const options = {
           method: 'POST',
-          body: JSON.stringify(newData),
+          body: JSON.stringify({
+            username,
+            email,
+            password,
+          }),
           headers: {
             'Content-Type': 'application/json',
           },
         };
 
-        const response = await fetch(`/api/auths/register`, options);
+        const response = await fetch(`${process.env.API_BASE_URL}/auths/register`, options);
 
         if (!response.ok) {
           const msg = await response.json();
