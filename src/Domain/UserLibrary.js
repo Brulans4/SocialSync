@@ -12,12 +12,14 @@ async function login() {
       const email = document.getElementById('emaillog').value;
       const password = document.getElementById('pwdlog').value;
 
+      const newData = {
+        email,
+        password,
+      };
+
       const options = {
         method: 'POST',
-        body: JSON.stringify({
-          email,
-          password
-        }),
+        body: JSON.stringify(newData),
         headers: {
           'Content-Type': 'application/json',
         },
@@ -59,17 +61,20 @@ async function register() {
     if (password !== passwordConfirm) {
       document.getElementById('errordiv').innerText = 'The passwords do not match';
     } else if (!gdprCheckbox.checked) {
-      document.getElementById('errordiv').innerText = 'You forgot to accept the RGPD !';
+      document.getElementById('errordiv').innerText = 'You forgot to accept the GDPR !';
+      document.getElementById('errordiv').className = 'bg-red-500 text-white p-4 rounded-md';
     } else {
+      // Creation of a new json object
+      const newData = {
+        email,
+        username,
+        password,
+      };
 
       try {
         const options = {
           method: 'POST',
-          body: JSON.stringify({
-            email,
-            username,
-            password,
-          }),
+          body: JSON.stringify(newData),
           headers: {
             'Content-Type': 'application/json',
           },
